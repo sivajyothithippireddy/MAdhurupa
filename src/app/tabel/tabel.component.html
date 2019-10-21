@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="jumbotron">
+
+        <h1>Welcome to form</h1>
+        <br><br>
+        <form #tbfm="ngForm" (ngSubmit)="take(tbfm)">
+
+            <div class=" row form-group">
+
+                <div class="col-6">
+                    <h5>First Name</h5>
+                    <input [(ngModel)]="firstname" name="fname" #fna="ngModel" class="form-control" required
+                        minlength="3" [ngClass]="{'is-invalid':fna.invalid&&fna.touched,'is-valid':fna.valid}">
+                    <section *ngIf="fna.invalid&&fna.touched">
+                        <p *ngIf="fna.errors.required"> * Plese enter your firstname</p>
+                        <p *ngIf="fna.errors.minlength"> * Plese enter your name greater than 3</p>
+                    </section>
+                </div>
+
+                <div class="col-6">
+                    <h5>Last Name</h5>
+                    <input [(ngModel)]="lasttname" name="lname" #lna="ngModel" class="form-control" required
+                        minlength="3" [ngClass]="{'is-invalid':lna.invalid&&lna.touched,'is-valid':lna.valid}">
+                    <section *ngIf="lna.invalid&&lna.touched">
+                        <p *ngIf="lna.errors.required"> * Plese enter your lastname</p>
+                        <p *ngIf="lna.errors.minlength"> * Plese enter your name greater than 3</p>
+                    </section>
+                </div>
+            </div>
+
+
+            <div class=" row form-group">
+
+                <div class="col-6">
+                    <h5>Password</h5>
+                    <input [(ngModel)]="password" name="pass" #pas="ngModel" class="form-control" required minlength="8"
+                        [ngClass]="{'is-invalid':pas.invalid&&pas.touched,'is-valid':pas.valid}">
+                    <section *ngIf="pas.invalid&&pas.touched">
+                        <p *ngIf="pas.errors.required"> * Plese enter your password</p>
+                        <p *ngIf="pas.errors.minlength"> * Plese enter your password greater than 8</p>
+                    </section>
+                </div>
+
+                <div class="col-6">
+                    <h5>Retype password</h5>
+                    <input [(ngModel)]="repassword" name="repass" #rep="ngModel" class="form-control" required
+                        minlength="3"
+                        [ngClass]="{'is-invalid':rep.valid&&(password!=repassword),'is-valid':rep.valid&&(password==repassword)}">
+
+                    <section *ngIf="rep.valid">
+                        <p *ngIf="(password==repassword)" style="color:green"> Correct password</p>
+                        <p *ngIf="(password!=repassword)" style="color:red"> * rewrite your password</p>
+                    </section>
+                </div>
+            </div>
+            <div class=" row form-group">
+                <div class="col-6">
+                    <h5>Phone Number</h5>
+                    <input [(ngModel)]="phone" name="phne" #phn="ngModel" class="form-control" required minlength="10"
+                        maxlength="10" [ngClass]="{'is-invalid':phn.touched && phn.invalid , 'is-valid':phn.valid}">
+                    <section *ngIf="phn.invalid&&phn.touched">
+                        <p *ngIf="phn.errors.required"> * Plese enter your phone number</p>
+                        <p *ngIf="phn.errors.minlength"> * Plese enter your phone number greater than 10</p>
+                        <p *ngIf="phn.errors.maxlength"> * Plese enter your phone number greater than 10</p>
+                    </section>
+                </div>
+            </div>
+            <button class="btn btn-danger" name="bton" [disabled]="tbfm.invalid">Submit</button>
+           
+        </form>
+    </div>
+</div>
